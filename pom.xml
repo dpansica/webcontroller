@@ -4,7 +4,7 @@
 
     <groupId>it.solutionsexmachina</groupId>
     <artifactId>webcontroller</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 
     <name>Generic JPA DAO with embedded ObjectDB</name>
     <description>Use CDI to map request bean method and AspectJ to validate input or convert output</description>
