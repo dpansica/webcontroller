@@ -4,7 +4,7 @@
 
     <groupId>it.solutionsexmachina</groupId>
     <artifactId>webcontroller</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.0-SNAPSHOT</version>
 
     <name>Generic JPA DAO with embedded ObjectDB</name>
     <description>Use CDI to map request bean method and AspectJ to validate input or convert output</description>
@@ -195,25 +195,6 @@
             </plugin>
         </plugins>
     </build>
-
-    <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/
-            </url>
-        </repository>
-    </distributionManagement>
-
-    <scm>
-        <connection>scm:git:git://github.com/dpansica/webcontroller.git</connection>
-        <developerConnection>scm:git:git@github.com:dpansica/webcontroller.git</developerConnection>
-        <url>https://github.com/dpansica/webcontroller</url>
-        <tag>webcontroller-1.0</tag>
-    </scm>
 
     <profiles>
         <!-- GPG Signature on release -->
