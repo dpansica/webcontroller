@@ -6,6 +6,56 @@
     <artifactId>webcontroller</artifactId>
     <version>1.1-SNAPSHOT</version>
 
+    <name>Generic JPA DAO with embedded ObjectDB</name>
+    <description>Use CDI to map request bean method and AspectJ to validate input or convert output</description>
+    <url>http://www.solutionsexmachina.it/dpansica/webcontroller</url>
+
+    <organization>
+        <url>http://www.solutionsexmachina/webcontroller</url>
+        <name>Solutions Ex Machina</name>
+    </organization>
+    <inceptionYear>2019</inceptionYear>
+
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Diego Pansica</name>
+            <email>diego.pansica@gmail.com</email>
+            <organization>Solutions Ex Machina</organization>
+            <organizationUrl>http://www.solutionsexmachina.it</organizationUrl>
+            <timezone>UTC+02:00</timezone>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/dpansica/webcontroller.git</connection>
+        <developerConnection>scm:git:git@github.com:dpansica/dpansica/webcontroller.git</developerConnection>
+        <url>https://github.com/dpansica/webcontroller</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <issueManagement>
+        <system>Github</system>
+        <url>https://github.com/dpansica/webcontroller/issues</url>
+    </issueManagement>
+
     <dependencies>
         <dependency>
             <groupId>javax.servlet</groupId>
