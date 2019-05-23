@@ -31,15 +31,29 @@ import java.util.List;
 
 public class AjaxCallAction {
     private static Logger log = Logger.getLogger(AjaxCallAction.class);
-    private String actionBeansPath;
 
     private HttpServletRequest request;
     private HttpServletResponse response;
 
-    public AjaxCallAction(HttpServletRequest request, HttpServletResponse response, String actionBeansPath) {
+    public AjaxCallAction(HttpServletRequest request, HttpServletResponse response) {
         this.request = request;
         this.response = response;
-        this.actionBeansPath = actionBeansPath;
+    }
+
+    public static String parseCall(HttpServletRequest request, HttpServletResponse response) {
+        String result = "{}";
+
+        AjaxCallAction ajaxCallAction = new AjaxCallAction(request, response);
+        AjaxCall ajaxCall = ajaxCallAction.getAjaxCallParameters(request);
+
+        result = ajaxCallAction.callBeanMethod(ajaxCall);
+
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Content-Length", String.valueOf(result.length()));
+        response.setHeader("Content-Disposition", "inline; filename=\"response.json\"");
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type");
+        response.setContentType("application/json");
+        return result;
     }
 
     public String callBeanMethod(AjaxCall ajaxCall) {
@@ -61,9 +75,10 @@ public class AjaxCallAction {
                         ServiceMethod annotation = method.getAnnotation(ServiceMethod.class);
                         if (annotation != null && annotation.value().equals(ajaxCall.getMethod())) {
                             Parameter[] parameters = method.getParameters();
+                            Object parameterObject = null;
                             if (parameters.length > 0) {
                                 Class<?> parameterType = parameters[0].getType();
-                                Object parameterObject = parameterType.newInstance();
+                                parameterObject = parameterType.newInstance();
 
                                 for (int i = 0; i < ajaxCall.getParameters().length; i++) {
                                     try {
@@ -74,9 +89,8 @@ public class AjaxCallAction {
                                     }
                                 }
 
-                                result = MethodUtils.invokeMethod(actionBean, method.getName(), parameterObject);
-
                             }
+                            result = MethodUtils.invokeMethod(actionBean, method.getName(), parameterObject);
                         }
                     }
                 }

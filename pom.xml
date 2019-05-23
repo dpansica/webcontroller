@@ -37,7 +37,7 @@
         <connection>scm:git:git://github.com/dpansica/webcontroller.git</connection>
         <developerConnection>scm:git:git@github.com:dpansica/dpansica/webcontroller.git</developerConnection>
         <url>https://github.com/dpansica/webcontroller</url>
-        <tag>webcontroller-1.0</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <distributionManagement>

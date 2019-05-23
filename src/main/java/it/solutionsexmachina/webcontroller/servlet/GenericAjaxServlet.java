@@ -14,10 +14,9 @@ import java.io.PrintWriter;
 import java.security.AccessControlContext;
 import java.security.AccessController;
 
-@WebServlet(urlPatterns = "/ajax/*")
+@WebServlet(urlPatterns = "/ajax")
 public class GenericAjaxServlet extends HttpServlet {
 
-    private static final String actionBeansPath = "it.solutionexmachina.crudwebapp.actionbeans";
     private static final long serialVersionUID = -1L;
 
     @Override
@@ -50,26 +49,16 @@ public class GenericAjaxServlet extends HttpServlet {
         AccessControlContext context = AccessController.getContext();
         Subject subject = Subject.getSubject(context);
 
-        String result = "{}";
+        String result = AjaxCallAction.parseCall(request, response);
 
-        AjaxCallAction ajaxCallAction = new AjaxCallAction(request, response, actionBeansPath);
-        AjaxCall ajaxCall = ajaxCallAction.getAjaxCallParameters(request);
-
-        result = ajaxCallAction.callBeanMethod(ajaxCall);
-
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Content-Length", String.valueOf(result.length()));
-        response.setHeader("Content-Disposition", "inline; filename=\"response.json\"");
-        response.setHeader("Access-Control-Allow-Headers", "Content-Type");
-        response.setContentType("application/json");
         PrintWriter out = response.getWriter();
 
         out.print(result);
 
         out.flush();
         out.close();
-
-
     }
+
+
 
 }
