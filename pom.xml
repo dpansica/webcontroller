@@ -6,7 +6,7 @@
     <artifactId>webcontroller</artifactId>
     <version>1.1-SNAPSHOT</version>
 
-    <name>Generic JPA DAO with embedded ObjectDB</name>
+    <name>Generic Web Ajax/Async Controllers</name>
     <description>Use CDI to map request bean method and AspectJ to validate input or convert output</description>
     <url>http://www.solutionsexmachina.it/dpansica/webcontroller</url>
 
