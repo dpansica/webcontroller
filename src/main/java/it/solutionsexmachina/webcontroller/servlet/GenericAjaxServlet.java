@@ -1,6 +1,5 @@
 package it.solutionsexmachina.webcontroller.servlet;
 
-import it.solutionsexmachina.webcontroller.servlet.utils.AjaxCall;
 import it.solutionsexmachina.webcontroller.servlet.utils.AjaxCallAction;
 
 import javax.security.auth.Subject;
@@ -49,7 +48,7 @@ public class GenericAjaxServlet extends HttpServlet {
         AccessControlContext context = AccessController.getContext();
         Subject subject = Subject.getSubject(context);
 
-        String result = AjaxCallAction.parseCall(request, response);
+        String result = AjaxCallAction.parseExecuteCallAndPrepareResponse(request, response);
 
         PrintWriter out = response.getWriter();
 
