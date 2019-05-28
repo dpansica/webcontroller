@@ -7,7 +7,7 @@ public class NamedLiteral extends AnnotationLiteral<Named> implements Named {
 
     private String value;
 
-    NamedLiteral(String value) {
+    public NamedLiteral(String value) {
         this.value = value;
     }
 

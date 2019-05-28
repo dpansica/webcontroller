@@ -1,5 +1,7 @@
 package it.solutionsexmachina.webcontroller.servlet.utils;
 
+import javax.inject.Named;
+import javax.inject.Singleton;
 import javax.servlet.AsyncContext;
 import javax.servlet.AsyncEvent;
 import javax.servlet.AsyncListener;
@@ -12,6 +14,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.LinkedBlockingDeque;
 
+@Singleton
 public class ProducerConsumerThread {
 
     private Map<String, Thread> channelProducers = new HashMap<>();
