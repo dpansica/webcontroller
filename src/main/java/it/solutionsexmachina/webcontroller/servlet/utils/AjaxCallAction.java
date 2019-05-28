@@ -35,18 +35,20 @@ public class AjaxCallAction {
     private HttpServletRequest request;
     private HttpServletResponse response;
 
+    private AjaxCall ajaxCall;
+
     public AjaxCallAction(HttpServletRequest request, HttpServletResponse response) {
         this.request = request;
         this.response = response;
+        this.ajaxCall = getAjaxCallParameters(request);
     }
 
-    public static String parseCall(HttpServletRequest request, HttpServletResponse response) {
+    public static String parseExecuteCallAndPrepareResponse(HttpServletRequest request, HttpServletResponse response) {
         String result = "{}";
 
         AjaxCallAction ajaxCallAction = new AjaxCallAction(request, response);
-        AjaxCall ajaxCall = ajaxCallAction.getAjaxCallParameters(request);
 
-        result = ajaxCallAction.callBeanMethod(ajaxCall);
+        result = ajaxCallAction.callBeanMethod();
 
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Content-Length", String.valueOf(result.length()));
@@ -56,7 +58,7 @@ public class AjaxCallAction {
         return result;
     }
 
-    public String callBeanMethod(AjaxCall ajaxCall) {
+    public String callBeanMethod() {
         DateTimeConverter dtConverter = new DateConverter();
         dtConverter.setPattern("dd/MM/yyyy");
         ConvertUtils.register(dtConverter, Date.class);
