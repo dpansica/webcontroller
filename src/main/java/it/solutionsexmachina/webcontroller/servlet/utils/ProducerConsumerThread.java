@@ -1,6 +1,5 @@
 package it.solutionsexmachina.webcontroller.servlet.utils;
 
-import javax.inject.Named;
 import javax.inject.Singleton;
 import javax.servlet.AsyncContext;
 import javax.servlet.AsyncEvent;
@@ -71,25 +70,26 @@ public class ProducerConsumerThread {
 
             }
         });
+        connections.add(context);
 
         inputsQueue.put(input);
-        connections.add(context);
     }
 
     public void produce() throws InterruptedException {
-        synchronized (this) {
+        while (true) {
+
+            Thread.sleep(3000);
 
             AjaxCallAction call = inputsQueue.take();
 
             outputsQueue.put(call.callBeanMethod());
-
-            notify();
         }
     }
 
     public void consume() throws InterruptedException {
-        synchronized (this) {
-            wait();
+        while (true) {
+
+            Thread.sleep(3000);
 
             String result = outputsQueue.take();
 
@@ -107,7 +107,6 @@ public class ProducerConsumerThread {
                     connections.remove(context);
                 }
             }
-
         }
     }
 
