@@ -78,7 +78,7 @@ public class ProducerConsumerThread {
     public void produce() throws InterruptedException {
         while (true) {
 
-            Thread.sleep(3000);
+//            Thread.sleep(3000);
 
             AjaxCallAction call = inputsQueue.take();
 
@@ -89,7 +89,7 @@ public class ProducerConsumerThread {
     public void consume() throws InterruptedException {
         while (true) {
 
-            Thread.sleep(3000);
+            Thread.sleep(1000);
 
             String result = outputsQueue.take();
 
