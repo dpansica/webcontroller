@@ -89,7 +89,7 @@ public class ProducerConsumerThread {
     public void consume() throws InterruptedException {
         while (true) {
 
-            Thread.sleep(1000);
+//            Thread.sleep(1000);
 
             String result = outputsQueue.take();
 
